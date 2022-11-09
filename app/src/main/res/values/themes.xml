@@ -14,6 +14,7 @@
 
         <!-- Remove the title bar -->
         <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/transparent</item>
