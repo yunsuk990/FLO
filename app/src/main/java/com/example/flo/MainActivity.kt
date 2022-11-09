@@ -2,10 +2,51 @@ package com.example.flo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.flo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initBottomNavigation()
     }
+
+    private fun initBottomNavigation() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frm, homeFragment())
+            .commitAllowingStateLoss()
+
+        binding.mainBnv.setOnItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.homeFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, homeFragment())
+                        .commitAllowingStateLoss()
+
+                }
+                R.id.lookFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, lookFragment())
+                        .commitAllowingStateLoss()
+                }
+                R.id.searchFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, searchFragment())
+                        .commitAllowingStateLoss()
+                }
+                R.id.lockerFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, lockerFragment())
+                        .commitAllowingStateLoss()
+                }
+            }
+            false
+        }
+    }
+
+
 }
