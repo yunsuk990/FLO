@@ -1,8 +1,8 @@
 package com.example.flo
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.flo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,8 +15,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initBottomNavigation()
 
+        val song = Song(binding.mainSongTitleTv.text.toString(), binding.mainSongSingerTv.text.toString())
+
         binding.mainPlayerCl.setOnClickListener{
-            startActivity(Intent(this, SongActivity::class.java))
+            val intent = Intent(this, SongActivity::class.java)
+            intent.putExtra("title", song.title)
+            intent.putExtra("singer", song.singer)
+            startActivity(intent)
         }
 
     }
