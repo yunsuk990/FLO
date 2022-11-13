@@ -17,6 +17,11 @@ class AlbumFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAlbumBinding.inflate(inflater, container, false)
+        binding.albumLikeIv.setOnClickListener{
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, homeFragment())
+                .commitAllowingStateLoss()
+        }
         return binding.root
     }
 
