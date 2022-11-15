@@ -10,6 +10,7 @@ import com.example.flo.databinding.FragmentAlbumBinding
 class AlbumFragment: Fragment() {
 
     lateinit var binding: FragmentAlbumBinding
+    var checkAlbumIpIv = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,6 +22,17 @@ class AlbumFragment: Fragment() {
             (context as MainActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.main_frm, homeFragment())
                 .commitAllowingStateLoss()
+        }
+
+        binding.albumIpIv.setOnClickListener{
+            if(checkAlbumIpIv){
+                binding.albumIpIv.setImageResource(R.drawable.ic_my_like_off)
+                checkAlbumIpIv = false
+
+            }else{
+                binding.albumIpIv.setImageResource(R.drawable.ic_my_like_on)
+                checkAlbumIpIv = true
+            }
         }
         return binding.root
     }
