@@ -14,11 +14,12 @@
             android:id="@+id/home_pannel_background_iv"
             android:layout_width="match_parent"
             android:layout_height="430dp"
-            android:src="@drawable/img_first_album_default"
             android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/img_first_album_default"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/home_pannel_btn_nugu_iv"
@@ -313,16 +314,15 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <ImageView
+        
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/home_popAcoustic_banner"
-            android:layout_marginTop="15dp"
-            android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_album_scrollview"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:src="@drawable/img_home_viewpager_exp" />
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_album_scrollview"/>
 
         <LinearLayout
             android:id="@+id/home_genre_popcast_linear"
