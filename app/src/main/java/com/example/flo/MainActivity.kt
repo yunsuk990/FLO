@@ -37,22 +37,25 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, homeFragment())
                         .commitAllowingStateLoss()
-
+                    return@setOnItemSelectedListener true
                 }
                 R.id.lookFragment -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, lookFragment())
                         .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
                 }
                 R.id.searchFragment -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, searchFragment())
                         .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
                 }
                 R.id.lockerFragment -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, lockerFragment())
                         .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
                 }
             }
             false
