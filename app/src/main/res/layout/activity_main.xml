@@ -97,6 +97,7 @@
         android:id="@+id/main_bnv"
         app:menu="@menu/menu"
         app:itemIconSize="20dp"
+        android:background="@color/white"
         app:labelVisibilityMode="labeled"
         app:itemIconTint="@drawable/btm_color_selector"
         app:itemTextColor="@drawable/btm_color_selector"
