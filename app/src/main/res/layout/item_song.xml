@@ -40,12 +40,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="잠이 안온다"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/item_song_singer_tv"
         app:layout_constraintStart_toEndOf="@+id/item_song_number_tv"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/item_song_singer_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
