@@ -15,6 +15,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <SeekBar
+        android:id="@+id/song_progressbar_view"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginBottom="-3dp"
+        android:progress="0"
+        android:progressBackgroundTint="@color/flo"
+        android:progressTint="@color/purple_700"
+        android:thumb="@color/transparent"
+        android:max="100000"
+        app:layout_constraintBottom_toTopOf="@+id/main_player_cl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_player_cl"
         android:layout_width="match_parent"
