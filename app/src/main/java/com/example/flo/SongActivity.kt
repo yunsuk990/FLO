@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.flo.databinding.ActivitySongBinding
+import com.google.gson.Gson
 
 class SongActivity: AppCompatActivity() {
 
@@ -13,6 +14,7 @@ class SongActivity: AppCompatActivity() {
     lateinit var song: Song
     lateinit var timer: Timer
     private var mediaPlayer: MediaPlayer? = null
+    private var gson: Gson = Gson()
 
     var checkRepeat: Boolean = false
     var checkRandom: Boolean = false
@@ -29,10 +31,10 @@ class SongActivity: AppCompatActivity() {
             finish()
         }
         binding.songMiniplayerIv.setOnClickListener {
-            setPlayerStatus(false)
+            setPlayerStatus(true)
         }
         binding.songPauseIv.setOnClickListener{
-            setPlayerStatus(true)
+            setPlayerStatus(false)
         }
 
         binding.songRepeatIv.setOnClickListener {
@@ -87,15 +89,16 @@ class SongActivity: AppCompatActivity() {
         timer.isPlaying = isPlaying
 
         if(isPlaying){
-            binding.songMiniplayerIv.visibility = View.VISIBLE
-            binding.songPauseIv.visibility = View.GONE
-            mediaPlayer?.start()
-        }else{
             binding.songMiniplayerIv.visibility = View.GONE
             binding.songPauseIv.visibility = View.VISIBLE
+            mediaPlayer?.start()
+        }else{
+            binding.songMiniplayerIv.visibility = View.VISIBLE
+            binding.songPauseIv.visibility = View.GONE
             if(mediaPlayer?.isPlaying == true){
                 mediaPlayer?.stop()
             }
+
         }
     }
 
@@ -128,6 +131,26 @@ class SongActivity: AppCompatActivity() {
                 }
             }
         }
+    }
+
+    //사용자가 포커스를 잃었을때 음악이 중지
+    override fun onPause() {
+        super.onPause()
+        setPlayerStatus(false)
+        song.second = ((binding.songProgressbarView.progress * song.playTime)/100)/1000
+        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        //Gson 사용 (라이브러리 추가)
+        val songJson = gson.toJson(song)
+        editor.putString("song", songJson)
+        editor.apply()
+    }
+    
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.interrupt()
+        mediaPlayer?.release() // 미디어플레이어가 갖고 있던 리소스 해제
+        mediaPlayer = null // 미디어 플레이어 해제
     }
 
 
