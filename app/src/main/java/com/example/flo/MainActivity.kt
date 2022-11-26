@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         initBottomNavigation()
 
         //음악 초기화
-        val song = Song(binding.mainSongTitleTv.text.toString(), binding.mainSongSingerTv.text.toString(), 0, 60, false)
+        val song = Song(binding.mainSongTitleTv.text.toString(), binding.mainSongSingerTv.text.toString(), 0, 60, false, "music_lilac")
 
         binding.mainPlayerCl.setOnClickListener{
             val intent = Intent(this, SongActivity::class.java)
@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("second", song.second)
             intent.putExtra("playTime", song.playTime)
             intent.putExtra("isPlaying", song.isPlaying)
+            intent.putExtra("music", song.music)
             startActivity(intent)
         }
 
