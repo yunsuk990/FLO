@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
         val songJson = sharedPreferences.getString("song", null)
         song = if(songJson == null){
-            Song("라일릭", "아이유(IU)", 0, 60, false, "music_lilac")
+            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac")
         }else{
             gson.fromJson(songJson, Song::class.java) //songJson의 Json형식을 Song클래스 자바 객체로 변환
         }
