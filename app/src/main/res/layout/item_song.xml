@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/item_song_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitCenter"
@@ -39,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:textColor="@color/black"
         android:text="잠이 안온다"
         app:layout_constraintBottom_toTopOf="@+id/item_song_singer_tv"
         app:layout_constraintStart_toEndOf="@+id/item_song_number_tv"
