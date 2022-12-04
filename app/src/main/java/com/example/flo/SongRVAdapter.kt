@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flo.databinding.ItemSongBinding
 
-class SongRVAdapter(): RecyclerView.Adapter<SongRVAdapter.ViewHolder>() {
+class SongRVAdapter(private val songList: ArrayList<Album>): RecyclerView.Adapter<SongRVAdapter.ViewHolder>() {
 
-    private val songs = ArrayList<Song>()
     interface MyItemClickListener{
         fun onRemoveSong(songId: Int)
     }
@@ -23,18 +22,17 @@ class SongRVAdapter(): RecyclerView.Adapter<SongRVAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(songs[position])
+        holder.bind(position)
     }
 
-    override fun getItemCount(): Int {
-        return songs.size
-    }
+    override fun getItemCount(): Int = songList.size
 
     inner class ViewHolder(val binding: ItemSongBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(song: Song){
-            //binding.itemSongCv.setBackgroundResource(song.)
-            binding.itemSongTitleTv.text = song.title
-            binding.itemSongSingerTv.text = song.singer
+        fun bind(position: Int){
+            binding.itemSongNumberTv.text = (position + 1).toString()
+            binding.itemSongIv.setImageResource(songList[position].coverImg!!)
+            binding.itemSongTitleTv.text = songList[position].title
+            binding.itemSongSingerTv.text = songList[position].singer
         }
     }
 }
