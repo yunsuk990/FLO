@@ -2,7 +2,10 @@ package com.example.flo
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.flo.Database.Song
+import com.example.flo.Database.SongDatabase
 import com.example.flo.databinding.ActivityMainBinding
 import com.google.gson.Gson
 
@@ -18,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        inputDummySongs()
         //Bottom Navigation 설정
         initBottomNavigation()
 
@@ -25,13 +29,10 @@ class MainActivity : AppCompatActivity() {
         //val song = Song(binding.mainSongTitleTv.text.toString(), binding.mainSongSingerTv.text.toString(), 0, 60, false, "music_lilac")
 
         binding.mainPlayerCl.setOnClickListener{
+            val editor = getSharedPreferences("song", MODE_PRIVATE).edit()
+            editor.putInt("songId", song.id)
+            editor.apply()
             val intent = Intent(this, SongActivity::class.java)
-            intent.putExtra("title", song.title)
-            intent.putExtra("singer", song.singer)
-            intent.putExtra("second", song.second)
-            intent.putExtra("playTime", song.playTime)
-            intent.putExtra("isPlaying", song.isPlaying)
-            intent.putExtra("music", song.music)
             startActivity(intent)
         }
 
@@ -81,15 +82,60 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onStart() {
+    private fun inputDummySongs() {
+        val songDB = SongDatabase.getInstance(this)!!
+        val songs = songDB.songDao().getSongs()
+
+        if(songs.isEmpty()) return
+        songDB.songDao().insert(
+            Song(
+                "LiLac",
+                "아이유 (IU)",
+                0,
+                200,
+                false,
+                "music_lilac",
+                R.drawable.img_album_exp2,
+                false
+            )
+        )
+
+        songDB.songDao().insert(
+            Song(
+                "FLu",
+                "아이유 (IU)",
+                0,
+                200,
+                false,
+                "music_flu",
+                R.drawable.img_album_exp2,
+                false
+            )
+        )
+        val _songs = songDB.songDao().getSongs()
+        Log.d("DB data", _songs.toString())
+
+    }
+
+     override fun onStart() {
         super.onStart()
-        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
-        val songJson = sharedPreferences.getString("song", null)
-        song = if(songJson == null){
-            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac")
+//        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
+//        val songJson = sharedPreferences.getString("song", null)
+//        song = if(songJson == null){
+//            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac")
+//        }else{
+//            gson.fromJson(songJson, Song::class.java) //songJson의 Json형식을 Song클래스 자바 객체로 변환
+//        }
+
+        val spf = getSharedPreferences("song", MODE_PRIVATE)
+        val songId = spf.getInt("songId", 0)
+        val songDB = SongDatabase.getInstance(this)!!
+        song = if (songId == 0){
+            songDB.songDao().getSong(1)
         }else{
-            gson.fromJson(songJson, Song::class.java) //songJson의 Json형식을 Song클래스 자바 객체로 변환
+            songDB.songDao().getSong(songId)
         }
+         Log.d("song ID", song.id.toString())
         setMiniPlayer(song)
     }
 
