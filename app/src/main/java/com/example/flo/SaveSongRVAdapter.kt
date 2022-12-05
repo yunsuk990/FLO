@@ -7,7 +7,12 @@ import com.example.flo.databinding.ItemSavesongBinding
 
 class SaveSongRVAdapter(private val savesongList: ArrayList<Album>): RecyclerView.Adapter<SaveSongRVAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: ItemSavesongBinding): RecyclerView.ViewHolder(binding.root) {
+    fun deleteSong(position: Int){
+        savesongList.removeAt(position)
+        notifyDataSetChanged()
+    }
+
+    inner class ViewHolder(val binding: ItemSavesongBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(album: Album){
             binding.itemSavesongIv.setImageResource(album.coverImg!!)
             binding.itemSavesongTitleTv.text = album.title.toString()
@@ -22,6 +27,12 @@ class SaveSongRVAdapter(private val savesongList: ArrayList<Album>): RecyclerVie
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(savesongList[position])
+        holder.binding.btnPlayerMore.setOnClickListener {
+            deleteSong(position)
+        }
+//        holder.binding.btnMiniplayerPlay.setOnClickListener {
+//
+//        }
     }
 
     override fun getItemCount(): Int = savesongList.size
