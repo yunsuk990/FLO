@@ -44,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/item_savesong_title_tv"/>
 
     <ImageView
+        android:id="@+id/btn_miniplayer_play"
         android:src="@drawable/btn_miniplayer_play"
         android:layout_width="30dp"
         android:layout_height="30dp"
