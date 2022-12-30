@@ -196,8 +196,4 @@ class SongActivity: AppCompatActivity() {
         mediaPlayer?.release() // 미디어플레이어가 갖고 있던 리소스 해제
         mediaPlayer = null // 미디어 플레이어 해제
     }
-
-
-
-
 }

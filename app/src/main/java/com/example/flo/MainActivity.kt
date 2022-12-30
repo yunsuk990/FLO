@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SongActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     private fun initBottomNavigation() {
@@ -78,43 +77,41 @@ class MainActivity : AppCompatActivity() {
         binding.mainSongTitleTv.text = song.title
         binding.mainSongSingerTv.text = song.singer
         binding.songProgressbarView.progress = (song.second*100000)/song.playTime
-
-
     }
 
     private fun inputDummySongs() {
         val songDB = SongDatabase.getInstance(this)!!
         val songs = songDB.songDao().getSongs()
 
-        if(songs.isEmpty()) return
-        songDB.songDao().insert(
-            Song(
-                "LiLac",
-                "아이유 (IU)",
-                0,
-                200,
-                false,
-                "music_lilac",
-                R.drawable.img_album_exp2,
-                false
+        if(songs.isEmpty()) {
+            songDB.songDao().insert(
+                Song(
+                    "LiLac",
+                    "아이유 (IU)",
+                    0,
+                    200,
+                    false,
+                    "music_lilac",
+                    R.drawable.img_album_exp2,
+                    false
+                )
             )
-        )
 
-        songDB.songDao().insert(
-            Song(
-                "FLu",
-                "아이유 (IU)",
-                0,
-                200,
-                false,
-                "music_flu",
-                R.drawable.img_album_exp2,
-                false
+            songDB.songDao().insert(
+                Song(
+                    "FLu",
+                    "아이유 (IU)",
+                    0,
+                    200,
+                    false,
+                    "music_lilac",
+                    R.drawable.img_album_exp2,
+                    false
+                )
             )
-        )
-        val _songs = songDB.songDao().getSongs()
-        Log.d("DB data", _songs.toString())
-
+            val _songs = songDB.songDao().getSongs()
+            Log.d("DB data", _songs.toString())
+        }
     }
 
      override fun onStart() {
@@ -131,12 +128,10 @@ class MainActivity : AppCompatActivity() {
         val songId = spf.getInt("songId", 0)
         val songDB = SongDatabase.getInstance(this)!!
         song = if (songId == 0){
-            songDB.songDao().getSong(1)
+            songDB.songDao().getSong(33)
         }else{
             songDB.songDao().getSong(songId)
         }
-         Log.d("song ID", song.id.toString())
         setMiniPlayer(song)
     }
-
 }
