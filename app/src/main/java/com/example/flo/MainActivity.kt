@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         val songId = spf.getInt("songId", 0)
         val songDB = SongDatabase.getInstance(this)!!
         song = if (songId == 0){
-            songDB.songDao().getSong(33)
+            songDB.songDao().getSong(1)
         }else{
             songDB.songDao().getSong(songId)
         }

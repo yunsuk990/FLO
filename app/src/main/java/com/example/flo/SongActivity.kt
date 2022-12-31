@@ -28,7 +28,7 @@ class SongActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySongBinding .inflate(layoutInflater)
+        binding = ActivitySongBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initPlayList()
@@ -80,6 +80,21 @@ class SongActivity: AppCompatActivity() {
             moveSong(-1)
         }
 
+        binding.songLikeIv.setOnClickListener {
+            setLike(songs[nowPos].isLike)
+        }
+
+    }
+
+    private fun setLike(isLike: Boolean){
+        songs[nowPos].isLike = !isLike
+        songDB.songDao().updateIsLikeById(!isLike, songs[nowPos].id)
+
+        if(!isLike){
+            binding.songLikeIv.setImageResource(R.drawable.ic_my_like_on)
+        }else{
+            binding.songLikeIv.setImageResource(R.drawable.ic_my_like_off)
+        }
     }
 
     private fun initSong(){
@@ -126,6 +141,12 @@ class SongActivity: AppCompatActivity() {
         binding.songAlbumIv.setImageResource(song.coverImg!!)
         val music = resources.getIdentifier(song.music, "raw", this.packageName)
         mediaPlayer = MediaPlayer.create(this, music) //음악 재생
+
+        if(song.isLike){
+            binding.songLikeIv.setImageResource(R.drawable.ic_my_like_on)
+        }else{
+            binding.songLikeIv.setImageResource(R.drawable.ic_my_like_off)
+        }
         setPlayerStatus(song.isPlaying)
     }
 

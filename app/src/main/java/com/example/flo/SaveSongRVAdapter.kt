@@ -1,22 +1,30 @@
 package com.example.flo
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flo.Database.Song
 import com.example.flo.databinding.ItemSavesongBinding
 
-class SaveSongRVAdapter(private val savesongList: ArrayList<Album>): RecyclerView.Adapter<SaveSongRVAdapter.ViewHolder>() {
+class SaveSongRVAdapter(): RecyclerView.Adapter<SaveSongRVAdapter.ViewHolder>() {
 
-    fun deleteSong(position: Int){
-        savesongList.removeAt(position)
-        notifyDataSetChanged()
+    private val songs: ArrayList<Song> = ArrayList<Song>()
+
+    interface MyItemClickListener {
+        fun onRemoveSong(songId: Int)
+    }
+
+    private lateinit var mItemClickListener: MyItemClickListener
+    fun setMyMyItemClickListener(itemClickListener: MyItemClickListener){
+        mItemClickListener = itemClickListener
     }
 
     inner class ViewHolder(val binding: ItemSavesongBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(album: Album){
-            binding.itemSavesongIv.setImageResource(album.coverImg!!)
-            binding.itemSavesongTitleTv.text = album.title.toString()
-            binding.itemSavesongSingerTv.text = album.singer.toString()
+        fun bind(song: Song){
+            binding.itemSavesongIv.setImageResource(song.coverImg!!)
+            binding.itemSavesongTitleTv.text = song.title
+            binding.itemSavesongSingerTv.text = song.singer
         }
     }
 
@@ -26,14 +34,27 @@ class SaveSongRVAdapter(private val savesongList: ArrayList<Album>): RecyclerVie
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(savesongList[position])
+        holder.bind(songs[position])
         holder.binding.btnPlayerMore.setOnClickListener {
+            mItemClickListener.onRemoveSong(songs[position].id)
             deleteSong(position)
+
         }
-//        holder.binding.btnMiniplayerPlay.setOnClickListener {
-//
-//        }
     }
 
-    override fun getItemCount(): Int = savesongList.size
+    override fun getItemCount(): Int = songs.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addSongs(songs: ArrayList<Song>){
+        this.songs.clear()
+        this.songs.addAll(songs)
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun deleteSong(position: Int){
+        songs.removeAt(position)
+        notifyDataSetChanged()
+    }
+
 }
