@@ -14,52 +14,6 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <LinearLayout
-        android:id="@+id/linear"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <ImageView
-            android:id="@+id/lock_iv"
-            android:src="@drawable/btn_playlist_select_off"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
-        <TextView
-            android:text="전체선택"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/lock1_iv"
-            android:src="@drawable/icon_browse_arrow_right"
-            android:layout_marginLeft="20dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
-        <TextView
-            android:text="전체듣기"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-        <TextView
-            android:text="편집"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:layout_marginRight="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/savesongRV"
         tools:listitem="@layout/item_savesong"
@@ -67,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/linear"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
