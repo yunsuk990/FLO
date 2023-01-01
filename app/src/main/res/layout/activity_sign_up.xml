@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register_tv"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <Views
+    <View
         android:id="@+id/login_id_underscore_view"
         android:layout_width="0dp"
         android:layout_height="1px"
@@ -140,6 +140,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/login_checkpassword_et"/>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/register_signup_btn"
         android:text="가입완료"
         android:background="@drawable/button_background_flo_color"
         android:textColor="@color/white"
