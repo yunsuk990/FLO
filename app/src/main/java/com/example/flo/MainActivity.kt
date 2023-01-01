@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         inputDummySongs()
+        inputDummyAlbums()
         //Bottom Navigation 설정
         initBottomNavigation()
 
@@ -111,6 +112,33 @@ class MainActivity : AppCompatActivity() {
             )
             val _songs = songDB.songDao().getSongs()
             Log.d("DB data", _songs.toString())
+        }
+    }
+
+    private fun inputDummyAlbums() {
+        val songDB = SongDatabase.getInstance(this)!!
+        val albums = songDB.AlbumDao().getAlbums()
+
+        if(albums.isEmpty()) {
+            songDB.AlbumDao().insert(
+                Album(
+                    0,
+                    "IU 5th Album 'LILAC",
+                    "아이유(IU)",
+                    R.drawable.img_album_exp2
+                )
+            )
+
+            songDB.AlbumDao().insert(
+                Album(
+                    1,
+                    "Butter",
+                    "방탄소년단 (BTS)",
+                    R.drawable.img_album_exp
+                )
+            )
+            val _albums = songDB.AlbumDao().getAlbums()
+            Log.d("DB data", _albums.toString())
         }
     }
 
