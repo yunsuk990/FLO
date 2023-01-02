@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SongActivity::class.java)
             startActivity(intent)
         }
+
+        Log.d("MAIN?HWT_TO_SERVER", getJwt().toString())
     }
 
     private fun initBottomNavigation() {
@@ -140,6 +142,11 @@ class MainActivity : AppCompatActivity() {
             val _albums = songDB.AlbumDao().getAlbums()
             Log.d("DB data", _albums.toString())
         }
+    }
+
+    private fun getJwt(): String? {
+        val spf = this.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("jwt", "")
     }
 
      override fun onStart() {
