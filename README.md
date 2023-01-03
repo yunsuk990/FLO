@@ -31,9 +31,10 @@
     <img width="230" alt="스크린샷 2022-11-05 오후 4 38 17" src="https://user-images.githubusercontent.com/45827567/210342106-dc7fd064-6406-4420-bf51-a9952298eba7.png">
 </p>
 
-### 앨범 저장
+### 앨범 및 앨범 저장
 <p align="center">
-    <img width="230" alt="스크린샷 2022-11-05 오후 4 38 17" src="[https://user-images.githubusercontent.com/45827567/210342106-dc7fd064-6406-4420-bf51-a9952298eba7.png](https://user-images.githubusercontent.com/45827567/210342171-d55d1529-255b-48c5-bacd-c3f6cb3509c0.png)">
+    <img width="230" alt="스크린샷 2022-11-05 오후 4 38 17" src="https://user-images.githubusercontent.com/45827567/210342645-41017599-bf41-4570-837a-b23b56afd00b.png">
+    <img width="230" alt="스크린샷 2022-11-05 오후 4 38 17" src="https://user-images.githubusercontent.com/45827567/210342171-d55d1529-255b-48c5-bacd-c3f6cb3509c0.png">
 </p>
 
 ### 곡 재생
