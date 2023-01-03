@@ -45,7 +45,6 @@
 <p align="center">
     <img width="230" alt="스크린샷 2022-11-05 오후 4 38 17" src="https://user-images.githubusercontent.com/45827567/210342269-ec4b8a92-cbae-4e72-95af-d6a957b67346.png">
 </p>
-<br>
 
 #
 
