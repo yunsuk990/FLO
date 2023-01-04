@@ -34,42 +34,44 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         return User(email, pwd, name)
     }
 
-//    private fun signUp(){
-//        if(binding.loginIdEt.text.toString().isEmpty() || binding.loginDirectInputEt.text.toString().isEmpty()){
-//            Toast.makeText(this, "이메일 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//        if(binding.loginPasswordEt.text.toString() !=  binding.loginCheckpasswordEt.text.toString()){
-//            Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//        val userDB = SongDatabase.getInstance(this)!!
-//        userDB.UserDao().insert(getUser())
-//
-//        val user = userDB.UserDao().getUsers()
-//        Log.d("SIGNUPACT", user.toString())
-//        finish()
-//    }
-
-    private fun signUp() {
+    //RoomDB 회원관리
+    private fun signUp(){
         if(binding.loginIdEt.text.toString().isEmpty() || binding.loginDirectInputEt.text.toString().isEmpty()){
             Toast.makeText(this, "이메일 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show()
-            return
-        }
-        if(binding.loginNameEt.text.toString().isEmpty()){
-            Toast.makeText(this, "이름 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show()
             return
         }
         if(binding.loginPasswordEt.text.toString() !=  binding.loginCheckpasswordEt.text.toString()){
             Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
             return
         }
+        val userDB = SongDatabase.getInstance(this)!!
+        userDB.UserDao().insert(getUser())
 
-        val authService = AuthService()
-        authService.setSignUpView(this)
-        authService.signUp(getUser())
-
+        val user = userDB.UserDao().getUsers()
+        Log.d("SIGNUPACT", user.toString())
+        finish()
     }
+
+    //Server 통신 경우
+//    private fun signUp() {
+//        if(binding.loginIdEt.text.toString().isEmpty() || binding.loginDirectInputEt.text.toString().isEmpty()){
+//            Toast.makeText(this, "이메일 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show()
+//            return
+//        }
+//        if(binding.loginNameEt.text.toString().isEmpty()){
+//            Toast.makeText(this, "이름 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show()
+//            return
+//        }
+//        if(binding.loginPasswordEt.text.toString() !=  binding.loginCheckpasswordEt.text.toString()){
+//            Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+//            return
+//        }
+//
+//        val authService = AuthService()
+//        authService.setSignUpView(this)
+//        authService.signUp(getUser())
+//
+//    }
 
     override fun onSignUpFailure() {
         finish()

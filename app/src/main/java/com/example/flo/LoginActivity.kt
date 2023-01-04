@@ -41,30 +41,31 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
         var email = binding.loginIdEt.text.toString() + "@" + binding.loginDirectInputEt.text.toString()
         var password = binding.loginPasswordEt.text.toString()
-//
-//        val songDB = SongDatabase.getInstance(this)!!
-//        val user = songDB.UserDao().getUser(email, password)
-//        if(user != null){
-//            Log.d("LOGIN_ACT/GET_USER", "userId : ${user.id}, $user")
-//            saveJwt(user.id)
-//            startMainActivity()
-//        }else{
-//            Toast.makeText(this, "회원정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
-//        }
 
-        val authService = AuthService()
-        authService.setLoginView(this)
-        authService.login(User(email, password, ""))
+        val songDB = SongDatabase.getInstance(this)!!
+        val user = songDB.UserDao().getUser(email, password)
+        if(user != null){
+            Log.d("LOGIN_ACT/GET_USER", "userId : ${user.id}, $user")
+            saveJwt(user.id)
+            startMainActivity()
+        }else{
+            Toast.makeText(this, "회원정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+        }
+
+
+//        val authService = AuthService()
+//        authService.setLoginView(this)
+//        authService.login(User(email, password, ""))
 
 
     }
 
-//    private fun saveJwt(jwt: Int){
-//        val spf = getSharedPreferences("auth", MODE_PRIVATE)
-//        val editor = spf.edit()
-//        editor.putInt("jwt", jwt)
-//        editor.apply()
-//    }
+    private fun saveJwt(jwt: Int){
+        val spf = getSharedPreferences("auth", MODE_PRIVATE)
+        val editor = spf.edit()
+        editor.putInt("jwt", jwt)
+        editor.apply()
+    }
 
     private fun saveJwt2(jwt: String){
         val spf = getSharedPreferences("auth", MODE_PRIVATE)

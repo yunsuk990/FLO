@@ -17,7 +17,6 @@ class AuthService {
         this.loginView = loginView
     }
 
-
     fun signUp(user: User){
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
         authService.signUp(user).enqueue(object: Callback<AuthResponse> {

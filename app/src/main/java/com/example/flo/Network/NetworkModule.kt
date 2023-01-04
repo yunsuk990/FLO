@@ -12,4 +12,3 @@ fun getRetrofit():Retrofit{
         .build()
     return retrofit
 }
-q
