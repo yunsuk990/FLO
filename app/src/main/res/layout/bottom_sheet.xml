@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="#301CFE"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet_listen_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bottom_sheet_playlist_linear"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:background="#301CFE"
+            android:scaleType="fitXY"
+            android:src="@drawable/btn_editbar_play" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="듣기"
+            android:textSize="12sp"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet_playlist_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_sheet_listen_linear"
+        app:layout_constraintEnd_toStartOf="@+id/bottom_sheet_mylist_linear"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bottom_sheet_listen_linear"
+        app:layout_constraintTop_toTopOf="@+id/bottom_sheet_listen_linear">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="#301CFE"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/btn_editbar_addplaylist" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="재생목록"
+            android:textSize="12sp"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet_mylist_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_sheet_playlist_linear"
+        app:layout_constraintEnd_toStartOf="@+id/bottom_sheet_delete_linear"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bottom_sheet_playlist_linear"
+        app:layout_constraintTop_toTopOf="@+id/bottom_sheet_playlist_linear">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="#301CFE"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/btn_editbar_mylist" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="내 리스트"
+            android:textSize="12sp"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/bottom_sheet_delete_linear"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="#301CFE"
+        android:scaleType="fitXY"
+        android:src="@drawable/btn_editbar_delete"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_sheet_mylist_linear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bottom_sheet_mylist_linear"
+        app:layout_constraintTop_toTopOf="@+id/bottom_sheet_mylist_linear" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
